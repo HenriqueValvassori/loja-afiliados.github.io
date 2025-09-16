@@ -2,7 +2,79 @@
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
+// A função que vai buscar os produtos no Supabase e exibir na página
+async function carregarProdutos() {
+    // 1. Acessa a tabela 'produtos' no Supabase e seleciona todas as colunas
+    const { data: produtos, error } = await supabase
+        .from('produtos')
+        .select('*');
 
+    // Se ocorrer um erro, mostra no console
+    if (error) {
+        console.error('Erro ao buscar produtos:', error.message);
+        return;
+    }
+
+    // Pega o elemento HTML onde os produtos serão exibidos
+    const productsContainer = document.getElementById('products-container');
+    
+    // Limpa o conteúdo atual da vitrine antes de exibir os produtos
+    productsContainer.innerHTML = '';
+
+    // 2. Itera sobre cada produto retornado
+    produtos.forEach(produto => {
+        // Cria a "caixa" de cada produto (o card)
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        // Cria a imagem do produto
+        const productImg = document.createElement('img');
+        productImg.src = produto.imagem_url;
+        productImg.alt = produto.nome;
+        productImg.className = 'product-img';
+
+        // Cria o título (nome) do produto
+        const productTitle = document.createElement('h3');
+        productTitle.className = 'product-title';
+        productTitle.textContent = produto.nome;
+
+        // Cria a descrição do produto
+        const productDesc = document.createElement('p');
+        productDesc.className = 'product-description';
+        productDesc.textContent = produto.descricao;
+        
+        // Cria a loja do produto
+        const productStore = document.createElement('p');
+        productStore.className = 'product-store';
+        productStore.textContent = `Loja: ${produto.loja}`;
+        
+        // Cria o preço do produto
+        const productPrice = document.createElement('span');
+        productPrice.className = 'product-price';
+        productPrice.textContent = `R$ ${produto.preco}`;
+
+        // Cria o botão de "Ver Oferta"
+        const productLink = document.createElement('a');
+        productLink.href = produto.link;
+        productLink.className = 'product-link-btn';
+        productLink.textContent = 'Ver Oferta';
+        productLink.target = '_blank'; // Abre o link em uma nova aba
+
+        // 3. Adiciona todos os elementos ao card do produto
+        productCard.appendChild(productImg);
+        productCard.appendChild(productTitle);
+        productCard.appendChild(productDesc);
+        productCard.appendChild(productStore);
+        productCard.appendChild(productPrice);
+        productCard.appendChild(productLink);
+
+        // Adiciona o card completo à vitrine
+        productsContainer.appendChild(productCard);
+    });
+}
+
+// Chama a função para carregar os produtos assim que a página for carregada
+window.onload = carregarProdutos;
 // A função agora recebe 'loja' e 'link' como parâmetros
 async function cadastrarProduto(nome, categoria, descricao, preco, loja, link, arquivoImagem) {
     try {
