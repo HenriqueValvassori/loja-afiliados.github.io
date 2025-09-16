@@ -1,63 +1,94 @@
-
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Produto - SuperVitrine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css.css">
-    <title>CADASTRO PRODUTOS</title>
 </head>
 <body>
-<div class="modal" id="product-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Cadastrar Novo Produto</h2>
-                <button class="close-btn">&times;</button>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    SuperVitrine
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Produtos</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#" class="active">Cadastrar Produto</a></li>
+                    </ul>
+                </nav>
             </div>
-            <form id="product-form">
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h1 class="form-title">
+                <i class="fas fa-plus-circle"></i>
+                Cadastrar Novo Produto
+            </h1>
+            <p class="form-subtitle">Preencha as informações abaixo para adicionar um produto à sua vitrine.</p>
+
+            <form id="form-produto" class="product-form">
                 <div class="form-group">
-                    <label for="product-name">Nome do Produto</label>
-                    <input type="text" id="product-name" class="form-control" required>
+                    <label for="nome">Nome do Produto</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: Câmera Digital" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="product-description">Descrição</label>
-                    <textarea id="product-description" class="form-control" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="product-price">Preço (R$)</label>
-                    <input type="number" id="product-price" class="form-control" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="product-category">Categoria</label>
-                    <select id="product-category" class="form-control" required>
-                        <option value="">Selecione uma categoria</option>
-                        <option value="casa">Casa</option>
-                        <option value="beleza">Beleza</option>
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
                         <option value="eletronicos">Eletrônicos</option>
                         <option value="eletrodomesticos">Eletrodomésticos</option>
                         <option value="celular">Celular</option>
                         <option value="computadores">Computadores</option>
+                        <option value="casa">Casa</option>
+                        <option value="beleza">Beleza</option>
+                        <option value="outros">Outros</option>
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="product-store">Loja</label>
-                    <select id="product-store" class="form-control" required>
-                        <option value="">Selecione uma loja</option>
-                        <option value="shopee">Shopee</option>
-                        <option value="aliexpress">AliExpress</option>
-                        <option value="mercadolivre">Mercado Livre</option>
-                    </select>
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" rows="5" placeholder="Descreva as características e diferenciais do produto..." required></textarea>
                 </div>
+
                 <div class="form-group">
-                    <label for="product-image">URL da Imagem</label>
-                    <input type="url" id="product-image" class="form-control" required>
+                    <label for="preco">Preço (R$)</label>
+                    <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="Ex: 1500.50" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="product-link">Link do Produto</label>
-                    <input type="url" id="product-link" class="form-control" required>
+                    <label for="imagem">Imagem do Produto</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-upload"></i>
+                    Cadastrar
+                </button>
             </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SuperVitrine</div>
+                <p class="copyright">&copy; 2023 SuperVitrine. Todos os direitos reservados.</p>
+            </div>
         </div>
-    </div></body>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="api/script.js"></script>
+</body>
 </html>
