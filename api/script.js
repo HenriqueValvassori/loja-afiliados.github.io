@@ -1,6 +1,6 @@
 // **ATENÇÃO:** Substitua estes valores pelos do seu projeto Supabase
-const supabaseUrl = 'SUPABASE_URL';
-const supabaseKey = 'SUPABASE_ANON_KEY';
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // A função agora recebe 'loja' e 'link' como parâmetros
