@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>CADASTRO PRODUTOS</title>
+</head>
+<body>
+<div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Cadastrar Novo Produto</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="product-name">Nome do Produto</label>
+                    <input type="text" id="product-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descrição</label>
+                    <textarea id="product-description" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Preço (R$)</label>
+                    <input type="number" id="product-price" class="form-control" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Categoria</label>
+                    <select id="product-category" class="form-control" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="casa">Casa</option>
+                        <option value="beleza">Beleza</option>
+                        <option value="eletronicos">Eletrônicos</option>
+                        <option value="eletrodomesticos">Eletrodomésticos</option>
+                        <option value="celular">Celular</option>
+                        <option value="computadores">Computadores</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-store">Loja</label>
+                    <select id="product-store" class="form-control" required>
+                        <option value="">Selecione uma loja</option>
+                        <option value="shopee">Shopee</option>
+                        <option value="aliexpress">AliExpress</option>
+                        <option value="mercadolivre">Mercado Livre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">URL da Imagem</label>
+                    <input type="url" id="product-image" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-link">Link do Produto</label>
+                    <input type="url" id="product-link" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+            </form>
+        </div>
+    </div></body>
+</html>
