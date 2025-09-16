@@ -1,6 +1,49 @@
 // api/script.js
-import { supabase } from './config.js';
 
+// Tenta carregar as variáveis de ambiente
+const supabaseUrl = import.meta.env.SUPABASE_URL || process.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+
+// Verifica se as variáveis de ambiente estão disponíveis
+if (!supabaseUrl || !supabaseKey) {
+    console.error("Variáveis de ambiente do Supabase não configuradas!");
+    
+    // Mostra uma mensagem amigável para o usuário
+    document.addEventListener('DOMContentLoaded', function() {
+        const productsContainer = document.getElementById('products-container');
+        if (productsContainer) {
+            productsContainer.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <h2>Configuração necessária</h2>
+                    <p>Para exibir os produtos, é necessário configurar as credenciais do Supabase.</p>
+                    <p>Por favor, <a href="/config.html">clique aqui</a> para configurar.</p>
+                </div>
+            `;
+        }
+        
+        // Desabilita o formulário de cadastro se estiver na página
+        const productForm = document.getElementById('form-produto');
+        if (productForm) {
+            productForm.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <h2>Configuração necessária</h2>
+                    <p>Para cadastrar produtos, é necessário configurar as credenciais do Supabase.</p>
+                    <p>Por favor, <a href="/config.html">clique aqui</a> para configurar.</p>
+                </div>
+            `;
+        }
+    });
+    
+    // Encerra a execução do script
+    throw new Error("Variáveis de ambiente do Supabase não configuradas!");
+}
+
+// Importa e configura o Supabase
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Restante do seu código...
+// [INSIRA AQUI O RESTO DO SEU CÓDIGO ORIGINAL]
 // Função para carregar produtos da vitrine
 async function carregarProdutos() {
     try {
@@ -178,7 +221,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Exportar funções para uso global (se necessário)
-window.carregarProdutos = carregarProdutos;
-window.cadastrarProduto = cadastrarProduto;
