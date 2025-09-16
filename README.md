@@ -1,0 +1,1 @@
+# loja-afiliados.github.io
