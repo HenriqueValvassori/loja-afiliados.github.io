@@ -1,8 +1,8 @@
 // api/script.js
 
 // Tenta carregar as variáveis de ambiente
-const supabaseUrl = import.meta.env.SUPABASE_URL || process.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
 // Verifica se as variáveis de ambiente estão disponíveis
 if (!supabaseUrl || !supabaseKey) {
