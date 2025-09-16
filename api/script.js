@@ -1,8 +1,9 @@
 // Importe o cliente do Supabase
 
 // **ATENÇÃO:** Substitua estes valores pelos do seu projeto Supabase
-const supabaseUrl = 'SUPABASE_URL';
-const supabaseKey = 'SUPABASE_ANON_KEY';
+// Esta abordagem requer um bundler como o Vite ou Webpack para funcionar
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Função para cadastrar um produto
