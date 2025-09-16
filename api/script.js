@@ -1,5 +1,4 @@
 // Importe o cliente do Supabase
-import { createClient } from '@supabase/supabase-js';
 
 // **ATENÇÃO:** Substitua estes valores pelos do seu projeto Supabase
 const supabaseUrl = 'SUPABASE_URL';
